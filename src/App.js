@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
+import PageItem from './Pages/PageItem';
 import * as api from './services/api';
 
 class App extends React.Component {
@@ -54,6 +55,10 @@ class App extends React.Component {
               />) }
             />
             <Route path="/shopping-cart" render={ () => <ShoppingCart /> } />
+            <Route
+              path="/page-item/:id"
+              render={ (props) => <PageItem { ...props } productList={ productList } /> }
+            />
           </Switch>
         </BrowserRouter>
       </div>

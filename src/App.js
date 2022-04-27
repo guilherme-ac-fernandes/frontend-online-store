@@ -5,7 +5,6 @@ import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
 import * as api from './services/api';
-import ShopButton from './components/ShopButton';
 
 class App extends React.Component {
   constructor() {

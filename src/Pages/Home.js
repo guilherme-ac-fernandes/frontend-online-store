@@ -1,46 +1,11 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ShopButton from '../components/ShopButton';
-import * as api from '../services/api';
 import CardItem from '../components/CardItem';
 
 class Home extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      categoriaList: [],
-      categoriaId: '',
-      productList: [],
-      // filtrar: false,
-      query: '',
-    };
-  }
-
-  async componentDidMount() {
-    const categorias = await api.getCategories();
-    this.setState({ categoriaList: categorias });
-  }
-
-  handleChange = ({ target }) => {
-    const { name, value } = target;
-    this.setState({
-      [name]: value,
-    }, async () => {
-      const { categoriaId, query } = this.state;
-      const listaProdutos = await api.getProductsFromCategoryAndQuery(categoriaId, query);
-      this.setState({ productList: listaProdutos.results });
-    });
-  }
-
-  // handleClick = () => {
-  //   this.setState({
-  //     filtrar: true,
-  //   });
-  // }
-
   render() {
-    const { categoriaList, productList } = this.state;
+    const { categoriaList, productList, handleChange, handleClick, filtrar } = this.props;
     return (
       <div>
         { categoriaList.length > 0 && (
@@ -53,7 +18,7 @@ class Home extends Component {
                   type="radio"
                   name="categoriaId"
                   data-testid="category"
-                  onChange={ this.handleChange }
+                  onChange={ handleChange }
                   value={ id }
                 />
               </label>
@@ -66,35 +31,47 @@ class Home extends Component {
             type="text"
             data-testid="query-input"
             name="query"
-            onChange={ this.handleChange }
+            onChange={ handleChange }
           />
           <input
             type="button"
             data-testid="query-button"
             value="Filtrar"
-            // onClick={ this.handleClick }
+            onClick={ handleClick }
           />
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          {
-            productList.length > 0 ? (
-              <div>
-                { productList.map((produto) => (
-                  <CardItem
-                    key={ produto.id }
-                    { ...produto }
-                  />
-                ))}
-              </div>
-            ) : (
-              <p>Nenhum produto foi encontrado</p>
-            )
-          }
+          { filtrar && (
+            <div>
+              {
+                productList.length > 0 ? (
+                  <div>
+                    { productList.map((produto) => (
+                      <CardItem
+                        key={ produto.id }
+                        { ...produto }
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p>Nenhum produto foi encontrado</p>
+                )
+              }
+            </div>
+          ) }
         </div>
       </div>
     );
   }
 }
+
+Home.propTypes = {
+  categoriaList: PropTypes.instanceOf(Array).isRequired,
+  productList: PropTypes.instanceOf(Array).isRequired,
+  filtrar: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default Home;

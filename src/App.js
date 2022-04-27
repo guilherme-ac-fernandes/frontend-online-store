@@ -34,7 +34,16 @@ class App extends React.Component {
     const { name, value } = target;
     this.setState({
       [name]: value,
-    }, () => this.handleClick());
+    });
+  }
+
+  handleRadio = ({ target }) => {
+    const { value } = target;
+    this.setState({ categoriaId: value }, async () => {
+      const { categoriaId } = this.state;
+      const listaProdutos = await api.getProductsFromCategoryAndQuery(categoriaId);
+      this.setState({ productList: listaProdutos.results, filtrar: true });
+    });
   }
 
   render() {
@@ -49,6 +58,7 @@ class App extends React.Component {
               render={ () => (<Home
                 categoriaList={ categoriaList }
                 productList={ productList }
+                handleRadio={ this.handleRadio }
                 handleChange={ this.handleChange }
                 handleClick={ this.handleClick }
                 filtrar={ filtrar }

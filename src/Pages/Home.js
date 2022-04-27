@@ -11,7 +11,9 @@ class Home extends Component {
       handleChange,
       handleRadio,
       handleClick,
-      filtrar } = this.props;
+      filtrar,
+      handleFavorites,
+      favorites } = this.props;
     return (
       <div>
         { categoriaList.length > 0 && (
@@ -32,7 +34,7 @@ class Home extends Component {
           </nav>
         ) }
         <div>
-          <ShopButton />
+          <ShopButton favorites={ favorites } />
           <input
             type="text"
             data-testid="query-input"
@@ -56,7 +58,8 @@ class Home extends Component {
                     { productList.map((produto) => (
                       <CardItem
                         key={ produto.id }
-                        { ...produto }
+                        handleFavorites={ handleFavorites }
+                        object={ produto }
                       />
                     ))}
                   </div>
@@ -79,6 +82,8 @@ Home.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   handleRadio: PropTypes.func.isRequired,
+  handleFavorites: PropTypes.func.isRequired,
+  favorites: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default Home;

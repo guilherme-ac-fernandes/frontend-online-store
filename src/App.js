@@ -5,6 +5,7 @@ import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
 import * as api from './services/api';
+import ShopButton from './components/ShopButton';
 
 class App extends React.Component {
   constructor() {
@@ -16,6 +17,7 @@ class App extends React.Component {
       productList: [],
       filtrar: false,
       query: '',
+      favorites: [],
     };
   }
 
@@ -46,8 +48,14 @@ class App extends React.Component {
     });
   }
 
+  handleFavorites = (object) => {
+    this.setState(({ favorites }) => ({
+      favorites: [...favorites, object],
+    }));
+  }
+
   render() {
-    const { categoriaList, productList, filtrar } = this.state;
+    const { categoriaList, productList, filtrar, favorites } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -61,10 +69,15 @@ class App extends React.Component {
                 handleRadio={ this.handleRadio }
                 handleChange={ this.handleChange }
                 handleClick={ this.handleClick }
+                handleFavorites={ this.handleFavorites }
                 filtrar={ filtrar }
+                favorites={ favorites }
               />) }
             />
-            <Route path="/shopping-cart" render={ () => <ShoppingCart /> } />
+            <Route
+              path="/shopping-cart"
+              render={ () => <ShoppingCart favorites={ favorites } /> }
+            />
             <Route
               path="/page-item/:id"
               render={ (props) => <PageItem { ...props } productList={ productList } /> }

@@ -79,7 +79,11 @@ class App extends React.Component {
             />
             <Route
               path="/page-item/:id"
-              render={ (props) => <PageItem { ...props } productList={ productList } /> }
+              render={ (props) => (<PageItem
+                { ...props }
+                productList={ productList }
+                handleFavorites={ this.handleFavorites }
+              />) }
             />
           </Switch>
         </BrowserRouter>

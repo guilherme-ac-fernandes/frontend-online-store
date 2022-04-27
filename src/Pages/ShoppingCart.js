@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 class ShoppingCart extends Component {
   render() {
     const { favorites } = this.props;
+
+    const favoritesFilter = favorites
+      .filter((element, index) => favorites.indexOf(element) === index);
+
     return (
       <div>
 
         {favorites.length > 0 ? (
           <div>
-            {favorites.map((element, index) => (
+            {favoritesFilter.map((element, index) => (
               <div key={ index }>
                 <p
                   data-testid="shopping-cart-product-name"

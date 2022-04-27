@@ -5,7 +5,13 @@ import CardItem from '../components/CardItem';
 
 class Home extends Component {
   render() {
-    const { categoriaList, productList, handleChange, handleClick, filtrar } = this.props;
+    const {
+      categoriaList,
+      productList,
+      handleChange,
+      handleRadio,
+      handleClick,
+      filtrar } = this.props;
     return (
       <div>
         { categoriaList.length > 0 && (
@@ -18,7 +24,7 @@ class Home extends Component {
                   type="radio"
                   name="categoriaId"
                   data-testid="category"
-                  onChange={ handleChange }
+                  onChange={ handleRadio }
                   value={ id }
                 />
               </label>
@@ -72,6 +78,7 @@ Home.propTypes = {
   filtrar: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
+  handleRadio: PropTypes.func.isRequired,
 };
 
 export default Home;

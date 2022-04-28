@@ -34,10 +34,6 @@ class CardItem extends React.Component {
 }
 
 CardItem.propTypes = {
-  // id: PropTypes.string.isRequired,
-  // thumbnail: PropTypes.string.isRequired,
-  // title: PropTypes.string.isRequired,
-  // price: PropTypes.number.isRequired,
   handleFavorites: PropTypes.func.isRequired,
   object: PropTypes.instanceOf(Object).isRequired,
 };

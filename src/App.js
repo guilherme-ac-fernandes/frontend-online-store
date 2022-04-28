@@ -17,6 +17,7 @@ class App extends React.Component {
       filtrar: false,
       query: '',
       favorites: [],
+      shoppingBag: {},
     };
   }
 
@@ -47,14 +48,43 @@ class App extends React.Component {
     });
   }
 
+  handleSizeMais = (id) => {
+    const { shoppingBag } = this.state;
+    const previousValue = shoppingBag[id];
+    shoppingBag[id] = previousValue + 1;
+    this.setState({
+      shoppingBag,
+    });
+  }
+
+  handleSizeMenos = (id) => {
+    const { shoppingBag } = this.state;
+    const previousValue = shoppingBag[id];
+    if (previousValue >= 1) shoppingBag[id] = previousValue - 1;
+    this.setState({
+      shoppingBag,
+    });
+  }
+
   handleFavorites = (object) => {
     this.setState(({ favorites }) => ({
       favorites: [...favorites, object],
-    }));
+    }), () => {
+      const { favorites } = this.state;
+      const favoritesFilter = favorites
+        .filter((element, index) => favorites.indexOf(element) === index);
+      const novoObjeto = favoritesFilter.reduce((acc, curr) => {
+        acc[curr.id] = 1;
+        return acc;
+      }, {});
+      this.setState({
+        shoppingBag: novoObjeto,
+      });
+    });
   }
 
   render() {
-    const { categoriaList, productList, filtrar, favorites } = this.state;
+    const { categoriaList, productList, filtrar, favorites, shoppingBag } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -75,7 +105,12 @@ class App extends React.Component {
             />
             <Route
               path="/shopping-cart"
-              render={ () => <ShoppingCart favorites={ favorites } /> }
+              render={ () => (<ShoppingCart
+                favorites={ favorites }
+                shoppingBag={ shoppingBag }
+                handleSizeMais={ this.handleSizeMais }
+                handleSizeMenos={ this.handleSizeMenos }
+              />) }
             />
             <Route
               path="/page-item/:id"

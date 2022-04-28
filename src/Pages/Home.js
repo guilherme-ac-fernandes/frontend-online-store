@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ShopButton from '../components/ShopButton';
 import CardItem from '../components/CardItem';
+import '../styles/Home.css';
 
 class Home extends Component {
   render() {
@@ -15,9 +16,9 @@ class Home extends Component {
       handleFavorites,
       favorites } = this.props;
     return (
-      <div>
+      <div className="container">
         { categoriaList.length > 0 && (
-          <nav>
+          <nav className="nav-content">
             {categoriaList.map(({ id, name }) => (
               <label key={ id } htmlFor={ id }>
                 {name}
@@ -33,25 +34,29 @@ class Home extends Component {
             ))}
           </nav>
         ) }
-        <div>
-          <ShopButton favorites={ favorites } />
-          <input
-            type="text"
-            data-testid="query-input"
-            name="query"
-            onChange={ handleChange }
-          />
-          <input
-            type="button"
-            data-testid="query-button"
-            value="Filtrar"
-            onClick={ handleClick }
-          />
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          { filtrar && (
+        <div className="content">
+          <div className="header-content">
             <div>
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>
+              <input
+                type="text"
+                data-testid="query-input"
+                name="query"
+                onChange={ handleChange }
+              />
+              <input
+                type="button"
+                data-testid="query-button"
+                value="Filtrar"
+                onClick={ handleClick }
+              />
+            </div>
+            <ShopButton favorites={ favorites } className="shoppButton" />
+          </div>
+          { filtrar && (
+            <div className="product-list">
               {
                 productList.length > 0 ? (
                   <div>
@@ -64,7 +69,7 @@ class Home extends Component {
                     ))}
                   </div>
                 ) : (
-                  <p>Nenhum produto foi encontrado</p>
+                  <h3>Nenhum produto foi encontrado</h3>
                 )
               }
             </div>

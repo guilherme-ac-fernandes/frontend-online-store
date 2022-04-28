@@ -87,6 +87,9 @@ class App extends React.Component {
     const { categoriaList, productList, filtrar, favorites, shoppingBag } = this.state;
     return (
       <div className="App">
+        <header>
+          <h2>Frontend Online Store</h2>
+        </header>
         <BrowserRouter>
           <Switch>
             <Route

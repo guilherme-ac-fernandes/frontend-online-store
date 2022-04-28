@@ -1,0 +1,33 @@
+
+.container {
+  margin-top: 2px ;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.nav-content {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
+
+.content {
+  width: 75%;
+  border: 1px solid red;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  border: 1px solid brown;
+}
+
+.product-list {
+  width: 85%;
+  border:  1px solid green;
+  margin: auto;
+}

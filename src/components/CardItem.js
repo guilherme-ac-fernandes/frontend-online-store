@@ -12,7 +12,7 @@ class CardItem extends React.Component {
     return (
       <div data-testid="product">
         <p>{title}</p>
-        <img src={ thumbnail } alt={ title } />
+        <img src={ thumbnail } alt={ title } width="120px" />
         <p>{price}</p>
         <Link
           to={ `/page-item/${id}` }

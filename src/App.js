@@ -49,10 +49,20 @@ class App extends React.Component {
   }
 
   handleSizeMais = (id) => {
-    this.setState((previous) => {
-      shoppingBag: {
-        [id] = previous.shoppingBag[id] + 1
-      }
+    const { shoppingBag } = this.state;
+    const previousValue = shoppingBag[id];
+    shoppingBag[id] = previousValue + 1;
+    this.setState({
+      shoppingBag,
+    });
+  }
+
+  handleSizeMenos = (id) => {
+    const { shoppingBag } = this.state;
+    const previousValue = shoppingBag[id];
+    if (previousValue >= 1) shoppingBag[id] = previousValue - 1;
+    this.setState({
+      shoppingBag,
     });
   }
 
@@ -99,6 +109,7 @@ class App extends React.Component {
                 favorites={ favorites }
                 shoppingBag={ shoppingBag }
                 handleSizeMais={ this.handleSizeMais }
+                handleSizeMenos={ this.handleSizeMenos }
               />) }
             />
             <Route

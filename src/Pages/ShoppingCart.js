@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class ShoppingCart extends Component {
   render() {
-    const { favorites, shoppingBag, handleSizeMais } = this.props;
+    const { favorites, shoppingBag, handleSizeMais, handleSizeMenos } = this.props;
     const favoritesFilter = favorites
       .filter((element, index) => favorites.indexOf(element) === index);
     return (
@@ -23,21 +23,32 @@ class ShoppingCart extends Component {
                 >
                   {shoppingBag[`${element.id}`]}
                 </p>
-                {/* <button
+                <button
                   type="button"
                   data-testid="product-decrease-quantity"
-                  onClick={ () => alguma(element.id) }
-                  >-</button> */}
+                  onClick={ () => handleSizeMenos(element.id) }
+                >
+                  -
+                </button>
                 <button
                   type="button"
                   data-testid="product-increase-quantity"
                   onClick={ () => handleSizeMais(element.id) }
                 >
                   +
-
+                </button>
+                <button
+                  type="button"
+                >
+                  X
                 </button>
               </div>
             ))}
+            <button
+              type="button"
+            >
+              Finalizar COmpra
+            </button>
           </div>
         ) : (
           <h2
@@ -54,5 +65,7 @@ class ShoppingCart extends Component {
 ShoppingCart.propTypes = {
   favorites: PropTypes.instanceOf(Array).isRequired,
   shoppingBag: PropTypes.instanceOf(Object).isRequired,
+  handleSizeMais: PropTypes.func.isRequired,
+  handleSizeMenos: PropTypes.func.isRequired,
 };
 export default ShoppingCart;

@@ -17,7 +17,7 @@ class App extends React.Component {
       filtrar: false,
       query: '',
       favorites: [],
-      shoppingBag: [],
+      shoppingBag: {},
     };
   }
 
@@ -48,11 +48,13 @@ class App extends React.Component {
     });
   }
 
-  // handleSizeMais = () => {
-  //   this.setState((previous) => {
-  //     shoppingBag: [...previous, ]
-  //   });
-  // }
+  handleSizeMais = (id) => {
+    this.setState((previous) => {
+      shoppingBag: {
+        [id] = previous.shoppingBag[id] + 1
+      }
+    });
+  }
 
   handleFavorites = (object) => {
     this.setState(({ favorites }) => ({
@@ -96,6 +98,7 @@ class App extends React.Component {
               render={ () => (<ShoppingCart
                 favorites={ favorites }
                 shoppingBag={ shoppingBag }
+                handleSizeMais={ this.handleSizeMais }
               />) }
             />
             <Route

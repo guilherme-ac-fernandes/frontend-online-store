@@ -17,6 +17,7 @@ class App extends React.Component {
       filtrar: false,
       query: '',
       favorites: [],
+      shoppingBag: [],
     };
   }
 
@@ -47,14 +48,31 @@ class App extends React.Component {
     });
   }
 
+  // handleSizeMais = () => {
+  //   this.setState((previous) => {
+  //     shoppingBag: [...previous, ]
+  //   });
+  // }
+
   handleFavorites = (object) => {
     this.setState(({ favorites }) => ({
       favorites: [...favorites, object],
-    }));
+    }), () => {
+      const { favorites } = this.state;
+      const favoritesFilter = favorites
+        .filter((element, index) => favorites.indexOf(element) === index);
+      const novoObjeto = favoritesFilter.reduce((acc, curr) => {
+        acc[curr.id] = 1;
+        return acc;
+      }, {});
+      this.setState({
+        shoppingBag: novoObjeto,
+      });
+    });
   }
 
   render() {
-    const { categoriaList, productList, filtrar, favorites } = this.state;
+    const { categoriaList, productList, filtrar, favorites, shoppingBag } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -75,7 +93,10 @@ class App extends React.Component {
             />
             <Route
               path="/shopping-cart"
-              render={ () => <ShoppingCart favorites={ favorites } /> }
+              render={ () => (<ShoppingCart
+                favorites={ favorites }
+                shoppingBag={ shoppingBag }
+              />) }
             />
             <Route
               path="/page-item/:id"

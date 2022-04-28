@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 
 class ShoppingCart extends Component {
   render() {
-    const { favorites } = this.props;
-
+    const { favorites, shoppingBag } = this.props;
     const favoritesFilter = favorites
       .filter((element, index) => favorites.indexOf(element) === index);
-
     return (
       <div>
 
@@ -23,8 +21,10 @@ class ShoppingCart extends Component {
                 <p
                   data-testid="shopping-cart-product-quantity"
                 >
-                  {favorites.filter((item) => item.id === element.id).length}
+                  {shoppingBag[`${element.id}`]}
                 </p>
+                <button type="button" data-testid="product-decrease-quantity">-</button>
+                <button type="button" data-testid="product-increase-quantity">+</button>
               </div>
             ))}
           </div>
@@ -42,5 +42,6 @@ class ShoppingCart extends Component {
 
 ShoppingCart.propTypes = {
   favorites: PropTypes.instanceOf(Array).isRequired,
+  shoppingBag: PropTypes.instanceOf(Object).isRequired,
 };
 export default ShoppingCart;

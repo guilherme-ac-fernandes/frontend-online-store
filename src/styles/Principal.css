@@ -1,0 +1,8 @@
+.header-app {
+  background-color: green;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: center;
+}

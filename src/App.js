@@ -5,6 +5,7 @@ import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
 import * as api from './services/api';
+import './styles/Principal.css';
 
 class App extends React.Component {
   constructor() {
@@ -88,8 +89,10 @@ class App extends React.Component {
     const { categoriaList, productList, filtrar, favorites, shoppingBag } = this.state;
     return (
       <div className="App">
-        <header>
+        <header className="header-app">
           <h2>Frontend Online Store</h2>
+          {/* botão para Home */}
+          {/* botão para Carrinho */}
         </header>
         <BrowserRouter>
           <Switch>

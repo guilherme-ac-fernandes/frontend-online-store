@@ -36,11 +36,12 @@ class Home extends Component {
         ) }
         <div className="content">
           <div className="header-content">
-            <div>
+            <div className="input-content">
               <p data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>
               <input
+                className="input-text"
                 type="text"
                 data-testid="query-input"
                 name="query"

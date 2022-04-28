@@ -71,6 +71,7 @@ class App extends React.Component {
       favorites: [...favorites, object],
     }), () => {
       const { favorites } = this.state;
+      // Baseada na resolução no exercício do Guilherme Fernandes (link: https://github.com/guilherme-ac-fernandes/trybe-exercicios/blob/main/02-front-end/bloco-11-componentes-com-estado-eventos-e-formularios-com-react/dia-01-componentes-com-estado-e-eventos/exercise-01/src/dataType.js)
       const favoritesFilter = favorites
         .filter((element, index) => favorites.indexOf(element) === index);
       const novoObjeto = favoritesFilter.reduce((acc, curr) => {
@@ -116,7 +117,6 @@ class App extends React.Component {
               path="/page-item/:id"
               render={ (props) => (<PageItem
                 { ...props }
-                productList={ productList }
                 handleFavorites={ this.handleFavorites }
               />) }
             />

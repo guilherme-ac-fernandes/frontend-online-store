@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
@@ -89,12 +89,15 @@ class App extends React.Component {
     const { categoriaList, productList, filtrar, favorites, shoppingBag } = this.state;
     return (
       <div className="App">
-        <header className="header-app">
-          <h2>Frontend Online Store</h2>
-          {/* botão para Home */}
-          {/* botão para Carrinho */}
-        </header>
         <BrowserRouter>
+          <header className="principal-header-app">
+            <h2>Frontend Online Store</h2>
+            <nav>
+              <Link to="/">Início</Link>
+              {/* botão para Home */}
+              {/* botão para Carrinho */}
+            </nav>
+          </header>
           <Switch>
             <Route
               exact

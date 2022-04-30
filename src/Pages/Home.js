@@ -16,9 +16,9 @@ class Home extends Component {
       handleFavorites,
       favorites } = this.props;
     return (
-      <div className="container">
+      <div className="home-container">
         { categoriaList.length > 0 && (
-          <nav className="nav-content">
+          <nav className="home-nav-content">
             {categoriaList.map(({ id, name }) => (
               <label key={ id } htmlFor={ id }>
                 {name}
@@ -34,33 +34,34 @@ class Home extends Component {
             ))}
           </nav>
         ) }
-        <div className="content">
-          <div className="header-content">
-            <div className="input-content">
+        <div className="home-content">
+          <div className="home-header-content">
+            <div className="home-input-content">
               <p data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>
               <input
-                className="input-text"
+                className="home-input-text"
                 type="text"
                 data-testid="query-input"
                 name="query"
                 onChange={ handleChange }
               />
               <input
+                className="home-input-button"
                 type="button"
                 data-testid="query-button"
                 value="Filtrar"
                 onClick={ handleClick }
               />
             </div>
-            <ShopButton favorites={ favorites } className="shoppButton" />
+            <ShopButton favorites={ favorites } className="home-shoppButton" />
           </div>
           { filtrar && (
-            <div className="product-list">
+            <div>
               {
                 productList.length > 0 ? (
-                  <div>
+                  <div className="home-product-list">
                     { productList.map((produto) => (
                       <CardItem
                         key={ produto.id }

@@ -1,23 +1,30 @@
-.container {
+.home-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin-top: 2px;
 }
 
-.nav-content {
-  border: 1px solid red;
+.home-nav-content {
+  border: 1px solid #181725;
   display: flex;
   flex-direction: column;
+  height: 80vh;
+  line-height: 30px;
+
+  /* Aplicação da propriedade overflow apenas na vertical proveniente do StackOverFlow
+  (link: https://stackoverflow.com/questions/19256982/horizontal-scroll-css) */
+  overflow-x: hidden;
+  overflow-y: scroll;
   width: 20%;
 }
 
-.content {
+.home-content {
   border: 1px solid red;
   width: 75%;
 }
 
-.header-content {
+.home-header-content {
   align-content: center;
   border: 1px solid brown;
   display: flex;
@@ -26,19 +33,34 @@
   justify-content: center;
 }
 
-.input-content {
+.home-input-content {
   border: 1px pink solid;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-.input-text {
+.home-input-text {
   border: 1px solid black;
 }
 
-.product-list {
+.home-input-button {
+  background-color: green;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  cursor: pointer;
+  padding: 8px 32px;
+  width: 100%;
+}
+
+.home-product-list {
+  align-items: center;
   border: 1px solid green;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
   margin: auto;
-  width: 85%;
+  width: 100%;
 }

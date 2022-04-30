@@ -21,8 +21,8 @@ class Home extends Component {
           <nav className="home-nav-content">
             {categoriaList.map(({ id, name }) => (
               <label key={ id } htmlFor={ id }>
-                {name}
                 <input
+                  className="home-input-category"
                   id={ id }
                   type="radio"
                   name="categoriaId"
@@ -30,6 +30,7 @@ class Home extends Component {
                   onChange={ handleRadio }
                   value={ id }
                 />
+                {name}
               </label>
             ))}
           </nav>

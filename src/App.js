@@ -90,9 +90,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <header className="principal-header-app">
+          <header className="app-header">
             <h2>Frontend Online Store</h2>
-            <nav>
+            <nav className="app-header-nav">
               <Link to="/">Início</Link>
               {/* botão para Home */}
               {/* botão para Carrinho */}

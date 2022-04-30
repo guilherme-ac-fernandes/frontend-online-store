@@ -19,6 +19,10 @@
   width: 20%;
 }
 
+.home-input-category {
+  margin: 0 10px;
+}
+
 .home-content {
   width: 75%;
 }
@@ -68,7 +72,7 @@
   align-items: center;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: auto;
   width: 100%;
 }

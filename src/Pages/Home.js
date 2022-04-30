@@ -35,11 +35,12 @@ class Home extends Component {
           </nav>
         ) }
         <div className="home-content">
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
           <div className="home-header-content">
             <div className="home-input-content">
-              <p data-testid="home-initial-message">
-                Digite algum termo de pesquisa ou escolha uma categoria.
-              </p>
+
               <input
                 className="home-input-text"
                 type="text"
@@ -55,10 +56,10 @@ class Home extends Component {
                 onClick={ handleClick }
               />
             </div>
-            <ShopButton favorites={ favorites } className="home-shoppButton" />
+            <ShopButton favorites={ favorites } />
           </div>
           { filtrar && (
-            <div>
+            <div className="home-container-product-list">
               {
                 productList.length > 0 ? (
                   <div className="home-product-list">

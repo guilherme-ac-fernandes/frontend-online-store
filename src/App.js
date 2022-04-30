@@ -93,8 +93,8 @@ class App extends React.Component {
             <h2>Frontend Online Store</h2>
             <nav className="app-header-nav">
               <Link to="/">Início</Link>
-              {/* botão para Home */}
-              {/* botão para Carrinho */}
+              <hr />
+              <Link to="/shopping-cart">Carrinho</Link>
             </nav>
           </header>
           <Switch>

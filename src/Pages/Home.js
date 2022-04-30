@@ -20,7 +20,7 @@ class Home extends Component {
         { categoriaList.length > 0 && (
           <nav className="home-nav-content">
             {categoriaList.map(({ id, name }) => (
-              <label key={ id } htmlFor={ id }>
+              <label key={ id } htmlFor={ id } className="label-nav-content">
                 <input
                   className="home-input-category"
                   id={ id }

@@ -1,11 +1,10 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
 import * as api from './services/api';
-import './styles/Principal.css';
+import './App.css';
 
 class App extends React.Component {
   constructor() {

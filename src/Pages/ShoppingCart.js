@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/ShoppingCart.css';
 
 class ShoppingCart extends Component {
   render() {
@@ -7,21 +8,22 @@ class ShoppingCart extends Component {
     const favoritesFilter = favorites
       .filter((element, index) => favorites.indexOf(element) === index);
     return (
-      <div>
-
+      <main className="shopping-cart-main">
         {favorites.length > 0 ? (
-          <div>
+          <div className="shopping-cart-container">
             {favoritesFilter.map((element, index) => (
-              <div key={ index }>
+              <div key={ index } className="shopping-cart-product">
+                <button
+                  type="button"
+                >
+                  X
+                </button>
+                <img src={ element.thumbnail } alt={ element.title } width="120px" />
                 <p
                   data-testid="shopping-cart-product-name"
+                  className="shopping-cart-product-name"
                 >
                   {element.title}
-                </p>
-                <p
-                  data-testid="shopping-cart-product-quantity"
-                >
-                  {shoppingBag[`${element.id}`]}
                 </p>
                 <button
                   type="button"
@@ -30,6 +32,12 @@ class ShoppingCart extends Component {
                 >
                   -
                 </button>
+                <p
+                  data-testid="shopping-cart-product-quantity"
+                  className="shopping-cart-product-quantity"
+                >
+                  {shoppingBag[`${element.id}`]}
+                </p>
                 <button
                   type="button"
                   data-testid="product-increase-quantity"
@@ -37,27 +45,25 @@ class ShoppingCart extends Component {
                 >
                   +
                 </button>
-                <button
-                  type="button"
-                >
-                  X
-                </button>
+                <p className="shopping-cart-product-price">{`R$: ${element.price}`}</p>
               </div>
             ))}
             <button
               type="button"
+              className="shopping-cart-product-buy"
             >
-              Finalizar COmpra
+              Finalizar Compra
             </button>
           </div>
         ) : (
           <h2
             data-testid="shopping-cart-empty-message"
+            className="shopping-cart-empty-message"
           >
             Seu carrinho está vazio
           </h2>
         )}
-      </div>
+      </main>
     );
   }
 }

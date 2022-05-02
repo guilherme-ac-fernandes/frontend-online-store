@@ -56,14 +56,14 @@ class PageItem extends React.Component {
   };
 
   render() {
-    const { match: { params: { id } }, handleFavorites } = this.props;
+    const { match: { params: { id } }, handleFavorites, itensAmount } = this.props;
     const { comments, product, render } = this.state;
     const commentsFilter = comments.filter((item) => item.id === id);
     const { title, thumbnail, price, attributes } = product;
     return (
       <div className="page-item-container">
         <nav className="page-item-container-nav">
-          <ShopButton />
+          <ShopButton itensAmount={ itensAmount } />
         </nav>
         {render && (
           <div className="page-item-container-product">
@@ -130,6 +130,7 @@ PageItem.propTypes = {
     isExact: PropTypes.bool,
     params: PropTypes.objectOf(PropTypes.string),
   }).isRequired,
+  itensAmount: PropTypes.number.isRequired,
 };
 
 export default PageItem;

@@ -12,6 +12,7 @@ class ShoppingCart extends Component {
     const { favorites, shoppingBag, handleSizeMais, handleSizeMenos } = this.props;
     const favoritesFilter = favorites
       .filter((element, index) => favorites.indexOf(element) === index);
+      // console.log(favoritesFilter)
     return (
       <main className="shopping-cart-main">
         {favorites.length > 0 ? (

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/ShopButton.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 
 class ShopButton extends Component {
   render() {
+    const { itensAmount } = this.props;
+
     return (
       <div className="shop-button-container">
         <Link
@@ -14,10 +16,14 @@ class ShopButton extends Component {
         >
           Carrinho
         </Link>
-        {/* <FontAwesomeIcon icon="fa-solid fa-cart-shopping" /> */}
+        <span data-testid="shopping-cart-size">{itensAmount}</span>
       </div>
     );
   }
 }
+
+ShopButton.propTypes = {
+  itensAmount: PropTypes.number.isRequired,
+};
 
 export default ShopButton;

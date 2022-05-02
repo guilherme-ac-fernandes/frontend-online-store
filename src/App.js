@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import ShoppingCart from './Pages/ShoppingCart';
+import Checkout from './Pages/Checkout';
 import Home from './Pages/Home';
 import PageItem from './Pages/PageItem';
 import * as api from './services/api';
@@ -114,11 +115,12 @@ class App extends React.Component {
             />
             <Route
               path="/shopping-cart"
-              render={ () => (<ShoppingCart
+              render={ (props) => (<ShoppingCart
                 favorites={ favorites }
                 shoppingBag={ shoppingBag }
                 handleSizeMais={ this.handleSizeMais }
                 handleSizeMenos={ this.handleSizeMenos }
+                { ...props }
               />) }
             />
             <Route
@@ -127,6 +129,12 @@ class App extends React.Component {
                 { ...props }
                 handleFavorites={ this.handleFavorites }
               />) }
+            />
+            <Route
+              path="/checkout"
+              render={ () => (
+                <Checkout shoppingBag={ shoppingBag } />
+              ) }
             />
           </Switch>
         </BrowserRouter>

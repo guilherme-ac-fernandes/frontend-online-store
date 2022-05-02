@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import '../styles/ShoppingCart.css';
 
 class ShoppingCart extends Component {
+  handleClick = () => {
+    const { history } = this.props;
+    history.push('/checkout');
+  }
+
   render() {
     const { favorites, shoppingBag, handleSizeMais, handleSizeMenos } = this.props;
     const favoritesFilter = favorites
@@ -51,6 +56,8 @@ class ShoppingCart extends Component {
             <button
               type="button"
               className="shopping-cart-product-buy"
+              data-testid="checkout-products"
+              onClick={ this.handleClick }
             >
               Finalizar Compra
             </button>
@@ -73,5 +80,8 @@ ShoppingCart.propTypes = {
   shoppingBag: PropTypes.instanceOf(Object).isRequired,
   handleSizeMais: PropTypes.func.isRequired,
   handleSizeMenos: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 export default ShoppingCart;

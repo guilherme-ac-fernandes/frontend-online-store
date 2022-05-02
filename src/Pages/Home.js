@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ShopButton from '../components/ShopButton';
 import CardItem from '../components/CardItem';
+import '../styles/Home.css';
 
 class Home extends Component {
   render() {
@@ -15,13 +16,13 @@ class Home extends Component {
       handleFavorites,
       favorites } = this.props;
     return (
-      <div>
+      <div className="home-container">
         { categoriaList.length > 0 && (
-          <nav>
+          <nav className="home-nav-content">
             {categoriaList.map(({ id, name }) => (
-              <label key={ id } htmlFor={ id }>
-                {name}
+              <label key={ id } htmlFor={ id } className="label-nav-content">
                 <input
+                  className="home-input-category"
                   id={ id }
                   type="radio"
                   name="categoriaId"
@@ -29,32 +30,40 @@ class Home extends Component {
                   onChange={ handleRadio }
                   value={ id }
                 />
+                {name}
               </label>
             ))}
           </nav>
         ) }
-        <div>
-          <ShopButton favorites={ favorites } />
-          <input
-            type="text"
-            data-testid="query-input"
-            name="query"
-            onChange={ handleChange }
-          />
-          <input
-            type="button"
-            data-testid="query-button"
-            value="Filtrar"
-            onClick={ handleClick }
-          />
+        <div className="home-content">
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+          <div className="home-header-content">
+            <div className="home-input-content">
+
+              <input
+                className="home-input-text"
+                type="text"
+                data-testid="query-input"
+                name="query"
+                onChange={ handleChange }
+              />
+              <input
+                className="home-input-button"
+                type="button"
+                data-testid="query-button"
+                value="Filtrar"
+                onClick={ handleClick }
+              />
+            </div>
+            <ShopButton favorites={ favorites } />
+          </div>
           { filtrar && (
-            <div>
+            <div className="home-container-product-list">
               {
                 productList.length > 0 ? (
-                  <div>
+                  <div className="home-product-list">
                     { productList.map((produto) => (
                       <CardItem
                         key={ produto.id }
@@ -64,7 +73,7 @@ class Home extends Component {
                     ))}
                   </div>
                 ) : (
-                  <p>Nenhum produto foi encontrado</p>
+                  <h3>Nenhum produto foi encontrado</h3>
                 )
               }
             </div>

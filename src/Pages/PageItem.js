@@ -76,7 +76,7 @@ class PageItem extends React.Component {
             <div className="page-item-container-product-info">
               <div className="page-item-container-product-info-division">
                 <img src={ thumbnail } alt={ title } />
-                <p>{`R$: ${price}`}</p>
+                <p>{`R$: ${price.toFixed(2)}`}</p>
                 { shipping.free_shipping
                   && <p data-testid="free-shipping">Frete Grátis</p> }
                 <button

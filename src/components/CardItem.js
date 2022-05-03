@@ -14,7 +14,7 @@ class CardItem extends React.Component {
       <div data-testid="product" className="cart-item-container">
         <p>{title}</p>
         <img src={ thumbnail } alt={ title } width="120px" />
-        <p>{price}</p>
+        <p>{`R$ ${price.toFixed(2)}`}</p>
         { shipping.free_shipping
                   && <p data-testid="free-shipping">Frete Grátis</p> }
         <Link

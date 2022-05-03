@@ -96,9 +96,17 @@ class Home extends Component {
             </div>
           ) }
         </div>
-        <div className="slider-content">
-          <button type="button" onClick={ this.changeHidden }>X</button>
-          <Slider favorites={ favorites } hidden={ hidden } />
+        <div>
+          <button type="button" onClick={ this.changeHidden } className="reset-button">
+            <span className="material-symbols-outlined">
+              shopping_cart
+            </span>
+          </button>
+          <Slider
+            favorites={ favorites }
+            hidden={ hidden }
+            changeHidden={ this.changeHidden }
+          />
         </div>
       </div>
     );

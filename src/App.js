@@ -53,12 +53,17 @@ class App extends React.Component {
   }
 
   handleSizeMais = (element) => {
-    this.setState(({ favorites }) => ({
-      favorites: [...favorites, element],
-    }), () => {
-      const { favorites } = this.state;
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    });
+    const { available_quantity: quant } = element;
+    const { favorites: oldFavorites } = this.state;
+    const size = oldFavorites.filter((item) => item.id === element.id).length;
+    if (size < quant) {
+      this.setState(({ favorites }) => ({
+        favorites: [...favorites, element],
+      }), () => {
+        const { favorites } = this.state;
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+      });
+    }
   }
 
   handleSizeMenos = (element) => {

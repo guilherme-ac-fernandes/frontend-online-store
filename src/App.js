@@ -90,6 +90,15 @@ class App extends React.Component {
     });
   }
 
+  handleRemove = (objeto) => {
+    const { favorites: oldFavorites } = this.state;
+    const newFavorites = oldFavorites.filter((item) => item.id !== objeto.id);
+    this.setState({ favorites: newFavorites }, () => {
+      const { favorites } = this.state;
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    });
+  }
+
   render() {
     const {
       categoriaList,
@@ -130,6 +139,7 @@ class App extends React.Component {
                 favorites={ favorites }
                 handleSizeMais={ this.handleSizeMais }
                 handleSizeMenos={ this.handleSizeMenos }
+                handleRemove={ this.handleRemove }
                 { ...props }
               />) }
             />

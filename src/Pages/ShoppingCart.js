@@ -9,11 +9,15 @@ class ShoppingCart extends Component {
   }
 
   render() {
-    const { favorites, handleSizeMais, handleSizeMenos } = this.props;
+    const { favorites, handleSizeMais, handleSizeMenos, handleRemove } = this.props;
     const favoritesFilter = favorites.reduce((acc, curr) => {
       if (!acc.some((item) => item.id === curr.id)) acc.push(curr);
       return acc;
     }, []);
+    const total = favorites.reduce((acc, curr) => {
+      acc += curr.price;
+      return acc;
+    }, 0);
     return (
       <main className="shopping-cart-main">
         {favorites.length > 0 ? (
@@ -22,6 +26,7 @@ class ShoppingCart extends Component {
               <div key={ index } className="shopping-cart-product">
                 <button
                   type="button"
+                  onClick={ () => handleRemove(element) }
                 >
                   X
                 </button>
@@ -52,9 +57,12 @@ class ShoppingCart extends Component {
                 >
                   +
                 </button>
-                <p className="shopping-cart-product-price">{`R$: ${element.price}`}</p>
+                <p className="shopping-cart-product-price">
+                  {`R$: ${element.price.toFixed(2)}`}
+                </p>
               </div>
             ))}
+            <h3>{`Valor total da compra : R$${total.toFixed(2)}`}</h3>
             <button
               type="button"
               className="shopping-cart-product-buy"
@@ -81,6 +89,7 @@ ShoppingCart.propTypes = {
   favorites: PropTypes.instanceOf(Array).isRequired,
   handleSizeMais: PropTypes.func.isRequired,
   handleSizeMenos: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,

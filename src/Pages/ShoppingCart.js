@@ -10,8 +10,10 @@ class ShoppingCart extends Component {
 
   render() {
     const { favorites, handleSizeMais, handleSizeMenos } = this.props;
-    const favoritesFilter = favorites
-      .filter((element, index) => favorites.indexOf(element) === index);
+    const favoritesFilter = favorites.reduce((acc, curr) => {
+      if (!acc.some((item) => item.id === curr.id)) acc.push(curr);
+      return acc;
+    }, []);
     return (
       <main className="shopping-cart-main">
         {favorites.length > 0 ? (

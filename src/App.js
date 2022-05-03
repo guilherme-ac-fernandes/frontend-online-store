@@ -82,17 +82,12 @@ class App extends React.Component {
   }
 
   handleFavorites = (object) => {
-    const { available_quantity: quant } = object;
-    const { favorites: oldFavorites } = this.state;
-    const size = oldFavorites.filter((item) => item.id === object.id).length;
-    if (size < quant) {
-      this.setState(({ favorites }) => ({
-        favorites: [...favorites, object],
-      }), () => {
-        const { favorites } = this.state;
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-      });
-    }
+    this.setState(({ favorites }) => ({
+      favorites: [...favorites, object],
+    }), () => {
+      const { favorites } = this.state;
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    });
   }
 
   render() {

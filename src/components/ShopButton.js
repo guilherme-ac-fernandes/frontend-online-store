@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 
 class ShopButton extends Component {
   render() {
-    const { itensAmount } = this.props;
-
+    const { favorites } = this.props;
     return (
       <div className="shop-button-container">
         <Link
@@ -16,14 +15,14 @@ class ShopButton extends Component {
         >
           Carrinho
         </Link>
-        <span data-testid="shopping-cart-size">{itensAmount}</span>
+        <span data-testid="shopping-cart-size">{favorites.length}</span>
       </div>
     );
   }
 }
 
 ShopButton.propTypes = {
-  itensAmount: PropTypes.number.isRequired,
+  favorites: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default ShopButton;

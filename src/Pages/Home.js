@@ -13,8 +13,8 @@ class Home extends Component {
       handleRadio,
       handleClick,
       filtrar,
-      handleFavorites,
-      itensAmount } = this.props;
+      favorites,
+      handleFavorites } = this.props;
     return (
       <div className="home-container">
         { categoriaList.length > 0 && (
@@ -57,7 +57,7 @@ class Home extends Component {
                 onClick={ handleClick }
               />
             </div>
-            <ShopButton itensAmount={ itensAmount } />
+            <ShopButton favorites={ favorites } />
           </div>
           { filtrar && (
             <div className="home-container-product-list">
@@ -92,7 +92,7 @@ Home.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleRadio: PropTypes.func.isRequired,
   handleFavorites: PropTypes.func.isRequired,
-  itensAmount: PropTypes.number.isRequired,
+  favorites: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default Home;

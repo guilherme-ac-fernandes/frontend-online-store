@@ -18,20 +18,15 @@ class App extends React.Component {
       filtrar: false,
       query: '',
       favorites: [],
-      shoppingBag: {},
-      itensAmount: 0,
     };
   }
 
   async componentDidMount() {
     const categorias = await api.getCategories();
     this.setState({ categoriaList: categorias });
-    const storage = localStorage.getItem('shoppingBag');
-    console.log(storage)
-    if (storage) {
-      this.setState({
-        shoppingBag: JSON.parse(storage),
-      }, () => this.handleItensAmount());
+    const oldFavorites = localStorage.getItem('favorites');
+    if (oldFavorites !== null) {
+      this.setState({ favorites: JSON.parse(oldFavorites) });
     }
   }
 
@@ -57,43 +52,28 @@ class App extends React.Component {
     });
   }
 
-  handleItensAmount = () => {
-    const { shoppingBag } = this.state;
-    // let storage = localStorage.getItem('itensAmount');
-    const itensAmount = Object.values(shoppingBag).reduce((acc, cur) => {
-      acc += cur;
-      return acc;
-    }, 0);
-    // localStorage
-    this.setState({
-      itensAmount,
+  handleSizeMais = (element) => {
+    this.setState(({ favorites }) => ({
+      favorites: [...favorites, element],
+    }), () => {
+      const { favorites } = this.state;
+      localStorage.setItem('favorites', JSON.stringify(favorites));
     });
   }
 
-  handleSizeMais = (id) => {
-    const { shoppingBag } = this.state;
-    const previousValue = shoppingBag[id];
-    shoppingBag[id] = previousValue + 1;
-    this.setState({
-      shoppingBag,
-    }, () => {
-      const { shoppingBag: shoppingBagStorage } = this.state;
-      localStorage.setItem('shoppingBag', JSON.stringify(shoppingBagStorage));
-      this.handleItensAmount();
-    });
-  }
-
-  handleSizeMenos = (id) => {
-    const { shoppingBag } = this.state;
-    const previousValue = shoppingBag[id];
-    if (previousValue >= 1) shoppingBag[id] = previousValue - 1;
-    this.setState({
-      shoppingBag,
-    }, () => {
-      const { shoppingBag: shoppingBagStorage } = this.state;
-      localStorage.setItem('shoppingBag', JSON.stringify(shoppingBagStorage));
-      this.handleItensAmount();
-    });
+  handleSizeMenos = (element) => {
+    const { favorites } = this.state;
+    const sizeElement = favorites.filter(({ id }) => id === element.id);
+    if (sizeElement.length >= 1) {
+      const position = favorites.lastIndexOf(element);
+      const newFavorites = favorites.filter((_, index) => index !== position);
+      this.setState({
+        favorites: newFavorites,
+      }, () => {
+        const { favorites: favoritesDiferent } = this.state;
+        localStorage.setItem('favorites', JSON.stringify(favoritesDiferent));
+      });
+    }
   }
 
   handleFavorites = (object) => {
@@ -101,23 +81,7 @@ class App extends React.Component {
       favorites: [...favorites, object],
     }), () => {
       const { favorites } = this.state;
-      // Baseada na resolução no exercício do Guilherme Fernandes (link: https://github.com/guilherme-ac-fernandes/trybe-exercicios/blob/main/02-front-end/bloco-11-componentes-com-estado-eventos-e-formularios-com-react/dia-01-componentes-com-estado-e-eventos/exercise-01/src/dataType.js)
-      const favoritesFilter = favorites
-        .filter((element, index) => favorites.indexOf(element) === index);
-        // const newObject = ({}, shoppingBag, {new})
-      const novoObjeto = favoritesFilter.reduce((acc, curr) => {
-        if (!acc[curr.id]) {
-          acc[curr.id] = 1;
-        }
-        return acc;
-      }, {});
-      this.setState({
-        shoppingBag: novoObjeto,
-      }, () => {
-        const { shoppingBag: shoppingBagStorage } = this.state;
-        localStorage.setItem('shoppingBag', JSON.stringify(shoppingBagStorage));
-        this.handleItensAmount();
-      });
+      localStorage.setItem('favorites', JSON.stringify(favorites));
     });
   }
 
@@ -127,8 +91,6 @@ class App extends React.Component {
       productList,
       filtrar,
       favorites,
-      shoppingBag,
-      itensAmount,
     } = this.state;
 
     return (
@@ -154,14 +116,13 @@ class App extends React.Component {
                 handleClick={ this.handleClick }
                 handleFavorites={ this.handleFavorites }
                 filtrar={ filtrar }
-                itensAmount={ itensAmount }
+                favorites={ favorites }
               />) }
             />
             <Route
               path="/shopping-cart"
               render={ (props) => (<ShoppingCart
                 favorites={ favorites }
-                shoppingBag={ shoppingBag }
                 handleSizeMais={ this.handleSizeMais }
                 handleSizeMenos={ this.handleSizeMenos }
                 { ...props }
@@ -172,13 +133,13 @@ class App extends React.Component {
               render={ (props) => (<PageItem
                 { ...props }
                 handleFavorites={ this.handleFavorites }
-                itensAmount={ itensAmount }
+                favorites={ favorites }
               />) }
             />
             <Route
               path="/checkout"
               render={ () => (
-                <Checkout shoppingBag={ shoppingBag } />
+                <Checkout favorites={ favorites } />
               ) }
             />
           </Switch>

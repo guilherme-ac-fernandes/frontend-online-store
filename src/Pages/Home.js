@@ -13,8 +13,8 @@ class Home extends Component {
       handleRadio,
       handleClick,
       filtrar,
-      handleFavorites,
-      favorites } = this.props;
+      favorites,
+      handleFavorites } = this.props;
     return (
       <div className="home-container">
         { categoriaList.length > 0 && (

@@ -1,48 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../services/api';
 
 class Checkout extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      info: [],
-      loading: false,
-    };
-  }
-
-  async componentDidMount() {
-    await this.getProductFromAPI();
-    this.isLoading();
-  }
-
-  isLoading = () => {
-    this.setState({ loading: true });
-  }
-
-  getProductFromAPI = async () => {
-    const { shoppingBag } = this.props;
-    Object.keys(shoppingBag).forEach(async (item) => {
-      const product = await api.getProductsFromId(item);
-      this.setState((previous) => ({
-        info: [...previous.info, product],
-      }));
-    });
-  }
-
   render() {
-    const { info, loading } = this.state;
+    const { favorites } = this.props;
+    const favoritesFilter = favorites
+      .filter((element, index) => favorites.indexOf(element) === index);
     return (
       <div>
-        {loading
-          && info.map((item) => (
-            <div key={ item.id }>
-              <p>{item.title}</p>
-              <img src={ item.thumbnail } alt={ item.title } width="120px" />
-              <p>{`R$ ${item.price}`}</p>
-            </div>
-          ))}
+        {favoritesFilter.map((item) => (
+          <div key={ item.id }>
+            <p>{item.title}</p>
+            <img src={ item.thumbnail } alt={ item.title } width="120px" />
+            <p>{`R$ ${item.price}`}</p>
+          </div>
+        ))}
         <form>
           <input
             data-testid="checkout-fullname"
@@ -99,7 +71,7 @@ class Checkout extends React.Component {
 }
 
 Checkout.propTypes = {
-  shoppingBag: PropTypes.instanceOf(Object).isRequired,
+  favorites: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default Checkout;

@@ -6,7 +6,7 @@ import '../styles/CardItem.css';
 class CardItem extends React.Component {
   render() {
     const {
-      object: { thumbnail, title, price, id },
+      object: { thumbnail, title, price, id, shipping },
       handleFavorites,
       object } = this.props;
 
@@ -15,6 +15,8 @@ class CardItem extends React.Component {
         <p>{title}</p>
         <img src={ thumbnail } alt={ title } width="120px" />
         <p>{price}</p>
+        { shipping.free_shipping
+                  && <p data-testid="free-shipping">Frete Grátis</p> }
         <Link
           to={ `/page-item/${id}` }
           data-testid="product-detail-link"

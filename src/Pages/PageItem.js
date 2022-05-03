@@ -59,7 +59,12 @@ class PageItem extends React.Component {
     const { match: { params: { id } }, handleFavorites, favorites } = this.props;
     const { comments, product, render } = this.state;
     const commentsFilter = comments.filter((item) => item.id === id);
-    const { title, thumbnail, price, attributes } = product;
+    const {
+      title,
+      thumbnail,
+      price,
+      attributes,
+      shipping } = product;
     return (
       <div className="page-item-container">
         <nav className="page-item-container-nav">
@@ -72,6 +77,8 @@ class PageItem extends React.Component {
               <div className="page-item-container-product-info-division">
                 <img src={ thumbnail } alt={ title } />
                 <p>{`R$: ${price}`}</p>
+                { shipping.free_shipping
+                  && <p data-testid="free-shipping">Frete Grátis</p> }
                 <button
                   type="button"
                   onClick={ () => handleFavorites(product) }

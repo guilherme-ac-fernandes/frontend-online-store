@@ -2,10 +2,27 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ShopButton from '../components/ShopButton';
 import CardItem from '../components/CardItem';
+import Slider from '../components/Slider';
 import '../styles/Home.css';
 
 class Home extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      hidden: true,
+    };
+  }
+
+  changeHidden = () => {
+    const { hidden } = this.state;
+    this.setState({
+      hidden: !hidden,
+    });
+  }
+
   render() {
+    const { hidden } = this.state;
     const {
       categoriaList,
       productList,
@@ -78,6 +95,10 @@ class Home extends Component {
               }
             </div>
           ) }
+        </div>
+        <div className="slider-content">
+          <button type="button" onClick={ this.changeHidden }>X</button>
+          <Slider favorites={ favorites } hidden={ hidden } />
         </div>
       </div>
     );

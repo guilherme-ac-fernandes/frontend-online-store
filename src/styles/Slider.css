@@ -1,0 +1,19 @@
+.true {
+  background-color: rgba(57, 53, 53, 0.408);
+  background-color: blue;
+  color: white;
+  position: fixed;
+  transition-duration: 0.2s;
+  width: 0;
+  z-index: 1;
+}
+
+.false {
+  background-color: rgba(57, 53, 53, 0.408);
+  color: white;
+  height: 100%;
+  position: fixed;
+  transition-duration: 0.2s;
+  width: 400px;
+  z-index: 1;
+}

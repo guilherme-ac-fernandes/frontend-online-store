@@ -1,8 +1,14 @@
+.slider-content {
+  display: flex;
+}
+
 .home-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding-top: 20px;
+  position: fixed;
+  z-index: 2;
 }
 
 .home-nav-content {

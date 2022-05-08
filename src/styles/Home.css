@@ -25,12 +25,17 @@
 }
 
 .label-nav-content:hover {
-  background-color: beige;
+  background-color: hsl(120, 34%, 67%);
+}
+
+.home-initial-message {
+  margin-left: 45px;
+  text-align: left;
 }
 
 .home-input-category {
+  display: none;
   margin: 0 10px;
-  visibility: hidden;
 }
 
 .home-content {

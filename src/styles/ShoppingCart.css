@@ -71,3 +71,7 @@
   padding: 6px 32px;
   width: 40%;
 }
+
+.shopping-cart-total-price {
+  margin: 60px auto 0;
+}

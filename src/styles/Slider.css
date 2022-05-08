@@ -8,7 +8,7 @@
 }
 
 .false {
-  background-color: rgb(57, 53, 53);
+  background-color: hsl(210, 11%, 15%);
   color: white;
   height: 100%;
 
@@ -17,6 +17,11 @@
   overflow-x: hidden;
   overflow-y: scroll;
   position: fixed;
+
+  /* Aplicação da propriedade right, z-index e
+  position para posicionamento do slider proveniente do StackOverFlow
+  (link: https://pt.stackoverflow.com/questions/171218/
+  como-fazer-um-menu-hamburguer-abrir-da-direita-para-a-esquerda) */
   right: 0;
   transition-duration: 0.2s;
   width: 400px;
@@ -47,4 +52,28 @@
 
 .slider-paragrafo {
   margin-top: 200px;
+}
+
+.slider-products {
+  margin-top: 30px;
+}
+
+.slider-product {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 15px 30px;
+  padding: 20px 10px;
+}
+
+.slider-product img {
+  background-color: aquamarine;
+  width: 70px;
+}
+
+.slider-product div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

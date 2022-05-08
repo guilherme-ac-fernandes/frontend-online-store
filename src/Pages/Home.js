@@ -53,7 +53,7 @@ class Home extends Component {
           </nav>
         ) }
         <div className="home-content">
-          <p data-testid="home-initial-message">
+          <p data-testid="home-initial-message" className="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <div className="home-header-content">
@@ -98,8 +98,11 @@ class Home extends Component {
         </div>
         <div>
           <button type="button" onClick={ this.changeHidden } className="reset-button">
-            <span className="material-symbols-outlined">
+            {/* <span className="material-symbols-outlined">
               shopping_cart
+            </span> */}
+            <span className="material-symbols-outlined">
+              menu_open
             </span>
           </button>
           <Slider

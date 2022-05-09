@@ -62,7 +62,9 @@ class ShoppingCart extends Component {
                 </p>
               </div>
             ))}
-            <h3>{`Valor total da compra : R$${total.toFixed(2)}`}</h3>
+            <h3 className="shopping-cart-total-price">
+              {`Valor total da compra : R$${total.toFixed(2)}`}
+            </h3>
             <button
               type="button"
               className="shopping-cart-product-buy"

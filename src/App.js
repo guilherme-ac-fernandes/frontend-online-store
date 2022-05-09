@@ -111,7 +111,7 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <header className="app-header">
-            <h2>Frontend Online Store</h2>
+            <h2><Link to="/">Frontend Online Store</Link></h2>
             <nav className="app-header-nav">
               <Link to="/">Início</Link>
               <hr />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Checkout.css';
 
 class Checkout extends React.Component {
   constructor() {
@@ -53,16 +54,20 @@ class Checkout extends React.Component {
       return acc;
     }, 0);
     return (
-      <div>
-        {favoritesFilter.map((item) => (
-          <div key={ item.id }>
-            <p>{item.title}</p>
-            <img src={ item.thumbnail } alt={ item.title } width="120px" />
-            <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          </div>
-        ))}
-        <h3>{`Valor total da compra : R$${total.toFixed(2)}`}</h3>
-        <form>
+      <div className="checkout-container">
+        <section className="checkout-products-container">
+          {favoritesFilter.map((item) => (
+            <div key={ item.id } className="checkout-product">
+              <img src={ item.thumbnail } alt={ item.title } width="120px" />
+              <p>{item.title}</p>
+              <p>{`R$ ${item.price.toFixed(2)}`}</p>
+            </div>
+          ))}
+        </section>
+        <h3 className="checkout-total-price">
+          {`Valor total da compra : R$${total.toFixed(2)}`}
+        </h3>
+        <form className="checkout-forms-container">
           <input
             data-testid="checkout-fullname"
             type="text"
@@ -70,6 +75,7 @@ class Checkout extends React.Component {
             name="fullname"
             value={ fullname }
             onChange={ this.handleChange }
+            className="input"
           />
           <input
             data-testid="checkout-email"
@@ -78,6 +84,7 @@ class Checkout extends React.Component {
             name="email"
             value={ email }
             onChange={ this.handleChange }
+            className="input"
           />
           <input
             data-testid="checkout-cpf"
@@ -86,6 +93,7 @@ class Checkout extends React.Component {
             name="cpf"
             value={ cpf }
             onChange={ this.handleChange }
+            className="input"
           />
           <input
             data-testid="checkout-cep"
@@ -94,6 +102,7 @@ class Checkout extends React.Component {
             name="cep"
             value={ cep }
             onChange={ this.handleChange }
+            className="input"
           />
           <input
             data-testid="checkout-phone"
@@ -102,6 +111,7 @@ class Checkout extends React.Component {
             name="phone"
             value={ phone }
             onChange={ this.handleChange }
+            className="input"
           />
           <input
             data-testid="checkout-address"
@@ -110,8 +120,9 @@ class Checkout extends React.Component {
             name="adress"
             value={ adress }
             onChange={ this.handleChange }
+            className="input"
           />
-          <fieldset>
+          <fieldset className="checkout-forms-fieldset">
             <legend>Método de Pagamento:</legend>
             <label htmlFor="boleto">
               Boleto
@@ -124,11 +135,31 @@ class Checkout extends React.Component {
             </label>
             <label htmlFor="card">
               Cartão
-              <input type="radio" name="payment" value="card" id="card" />
+              <input
+                type="radio"
+                name="payment"
+                value="card"
+                id="card"
+              />
+            </label>
+            <label htmlFor="pix">
+              Pix
+              <input
+                type="radio"
+                name="payment"
+                value="pix"
+                id="pix"
+              />
             </label>
           </fieldset>
-          <button type="button" onClick={ this.handleClick }>Finalizar Compra</button>
         </form>
+        <button
+          type="button"
+          className="checkout-button"
+          onClick={ this.handleClick }
+        >
+          Finalizar Compra
+        </button>
       </div>
     );
   }

@@ -7,5 +7,5 @@
 
 #### Demostração
 <p align="center">
-  <img src="colocar" alt="Trybewarts Gif - Demostração"/>
+  <img src="[colocar](https://github.com/guilherme-ac-fernandes/frontend-online-store/blob/main/frontend-online-store.gif)" alt="FrontEnd Online Store Gif - Demostração"/>
 </p>

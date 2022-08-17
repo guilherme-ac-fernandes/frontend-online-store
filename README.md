@@ -19,5 +19,5 @@ npm start // para iniciar a aplicação
 👨🏻‍💻 **Acessar:** _[Clique Aqui](https://frontend-online-store-kappa.vercel.app)_
 
 <p align="center">
-  <img src="https://github.com/guilherme-ac-fernandes/frontend-online-store/blob/main/frontend-online-store.gif" alt="FrontEnd Online Store Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/frontend-online-store/blob/main/frontend-online-store.png" alt="FrontEnd Online Store - Demostração"/>
 </p>

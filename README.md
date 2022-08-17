@@ -1,11 +1,23 @@
-## Projeto FrontEnd Online Store
+# Projeto FrontEnd Online Store 🛍
 
-#### Consiste em uma aplicação web, construída em grupo, de um e-commerce utilizando a API do Mercado Livre, com as funcionalidades de busca de produto por nome ou categoria; interação com os produtos deixando comentários e avaliações, adição e remoção de prdutos ao carrinho de compra mediante a disponibilidade no estoque e simulação da página de compra dos itens selecionados com as opções de pagamento.
-> Esta aplicação foi desenvolvida utilizando a biblioteca React e BrowserRouter, juntamente com metodologia ágeis para trabalhar em equipe por meio da utilização do Kanban e Scrum.
+Consiste em uma aplicação web, construída em grupo, de um e-commerce utilizando a API do Mercado Livre, com as funcionalidades de busca de produto por nome ou categoria; interação com os produtos deixando comentários e avaliações, adição e remoção de produtos ao carrinho de compra mediante a disponibilidade no estoque e simulação da página de compra dos itens selecionados com as opções de pagamento.
 
-:point_right: **Acessar:** _[Clique Aqui](colocar)_
+* Construída utilizado React e BrowserRouter.
+* Aplicação das metodologia ágeis: Kanban e Scrum
 
-#### Demostração
+### Instruções
+
+- Para rodar a aplicação localmente, realize o clone do projeto e utilize os comandos a seguir para inicializar:
+
+```
+npm install // para instalar as dependências
+npm start // para iniciar a aplicação
+```
+
+### Demonstração
+
+👨🏻‍💻 **Acessar:** _[Clique Aqui](https://frontend-online-store-kappa.vercel.app)_
+
 <p align="center">
-  <img src="colocar" alt="Trybewarts Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/frontend-online-store/blob/main/frontend-online-store.gif" alt="FrontEnd Online Store Gif - Demostração"/>
 </p>
